@@ -14,9 +14,10 @@ void	parse_map(t_game *game, char *map_path)
 	while ((line = get_next_line(fd)) != NULL)
 	{
 		aux = map_content;
-		map_content = ft_strjoin(aux, line);
-		free(aux);
+		map_content = ft_strjoin_gnl(aux, line);
 		free(line);
+		if (!map_content)
+			exit_game(game, "Error while reading the map");
 	}
 	close(fd);
 	if (!map_content)
@@ -26,5 +27,3 @@ void	parse_map(t_game *game, char *map_path)
 	if (!game->map.data)
 		exit_game(game, "Error: Failed to parse map!");
 }
-
-
