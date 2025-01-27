@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validate_map.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mely-pan <mely-pan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/27 17:36:36 by mely-pan          #+#    #+#             */
+/*   Updated: 2025/01/27 21:22:10 by mely-pan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 static int	is_rectangular(char **map)
@@ -83,11 +95,13 @@ static int	is_not_missing_components(t_game *game)
 void	validate_map(t_game *game)
 {
 	if (!is_rectangular(game->map.data))
-		exit_game(game, "Map is Not rectangular");
+		exit_game(game, "Map is Not rectangular!");
 	if (!is_enclosed(game->map.data))
-		exit_game(game, "Map is not enclosed by walls");
+		exit_game(game, "Map is not enclosed by walls!");
 	if (!is_not_missing_components(game))
-		exit_game(game, "Map does not have required components");
+		exit_game(game, "Map does not have required components!");
+	if (!has_valid_characters(game))
+		exit_game(game, "Invalid Charater in map file.");
 	if (!is_winnable(game))
-		exit_game(game, "game is not winnable");
+		exit_game(game, "Game is not winnable!");
 }

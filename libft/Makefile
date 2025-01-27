@@ -9,13 +9,8 @@ SRC = SRC/ft_atoi.c SRC/ft_bzero.c SRC/ft_isalnum.c SRC/ft_isalpha.c \
     SRC/ft_putendl_fd.c SRC/ft_putnbr_fd.c SRC/ft_itoa.c SRC/ft_strmapi.c \
     SRC/ft_striteri.c SRC/ft_split.c SRC/get_next_line.c SRC/get_next_line_utils.c
 
-BONUS_SRC = BONUS/ft_lstadd_front.c BONUS/ft_lstlast.c BONUS/ft_lstnew.c \
-        BONUS/ft_lstadd_back.c BONUS/ft_lstdelone.c BONUS/ft_lstclear.c \
-        BONUS/ft_lstsize.c BONUS/ft_lstiter.c BONUS/ft_lstmap.c
-
 # Object files
 OBJS = $(SRC:%.c=%.o)
-OBJBONUS = $(BONUS_SRC:%.c=%.o)
 
 # Compiler and flags
 CC = cc
@@ -46,17 +41,9 @@ $(OBJS): %.o: %.c
 	@echo "$(BLUE)Compiling $<...$(NC)"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-bonus: $(OBJBONUS)
-	@$(AR) $(NAME) $(OBJBONUS)
-	@echo "$(GREEN)Bonus files are compiled and library is ready.$(NC)"
-
-$(OBJBONUS): %.o: %.c
-	@echo "$(BLUE)Compiling $<...$(NC)"
-	@$(CC) $(CFLAGS) -c $< -o $@
-
 clean:
 	@echo "$(RED)Cleaning up object files...$(NC)"
-	@ rm -rf $(OBJS) $(OBJBONUS)
+	@ rm -rf $(OBJS)
 
 fclean: clean
 	@echo "$(RED)Removing static library: $(NAME)$(NC)"
@@ -64,4 +51,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
