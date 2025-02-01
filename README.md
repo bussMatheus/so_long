@@ -19,18 +19,18 @@ Features:
 Clone the repository:
 
   ```bash
-  $ git clone https://github.com/bussMatheus/so_long.git && cd so_long
+  git clone https://github.com/bussMatheus/so_long.git && cd so_long
   ```
 
 Clone The Minilibx (Linux) and compile with Make:
   ```bash
-  $ git clone https://github.com/42Paris/minilibx-linux.git minilibx-linux && make
+  git clone https://github.com/42Paris/minilibx-linux.git minilibx-linux && make
   ```
 
 Run the game with a map file:
 
   ```bash
-  $ ./so_long Maps/map1.ber
+  ./so_long Maps/map1.ber
   ```
 
 **Controls**: 
