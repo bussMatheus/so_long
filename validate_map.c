@@ -100,8 +100,6 @@ void	validate_map(t_game *game)
 		exit_game(game, "Map is not enclosed by walls!");
 	if (!is_not_missing_components(game))
 		exit_game(game, "Map does not have required components!");
-	if (!has_valid_characters(game))
-		exit_game(game, "Invalid Charater in map file.");
 	if (!is_winnable(game))
 		exit_game(game, "Game is not winnable!");
 }

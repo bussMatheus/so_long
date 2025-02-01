@@ -1,24 +1,21 @@
-SRC = so_long.c parse_map.c validate_map.c \
-	render.c clean.c utils.c validate_map_utils.c \
-	init_game.c hooks.c
+# Source files
+SRC = SRC/ft_bzero.c SRC/ft_memset.c SRC/ft_strlen.c SRC/ft_strncmp.c \
+    SRC/ft_strjoin.c SRC/ft_strlcpy.c SRC/ft_strdup.c SRC/ft_putchar_fd.c \
+	SRC/ft_putstr_fd.c SRC/ft_itoa.c \
+    SRC/ft_split.c SRC/get_next_line.c SRC/get_next_line_utils.c
 
-OBJ = $(SRC:%.c=%.o)
+# Object files
+OBJS = $(SRC:%.c=%.o)
 
-NAME = so_long
-
+# Compiler and flags
 CC = cc
-FLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
+# Library name
+NAME = libft.a
+
+# Archive command
 AR = ar rcs
-RM = rm -rf
-
-LIBFT_DIR = ./libft
-LIBFT = $(LIBFT_DIR)/libft.a
-
-MLX_DIR = ./minilibx-linux
-MLX = ${MLX_DIR}/libmlx.a
-
-LIBS = ${LIBFT} ${MLX} -lXext -lX11 -lm -lbsd
 
 # ANSI color codes
 GREEN = \033[0;32m
@@ -27,35 +24,25 @@ BLUE = \033[0;34m
 RED = \033[0;31m
 NC = \033[0m  # No Color (reset)
 
+# Targets
+$(NAME): $(OBJS)
+	@$(AR) $(NAME) $(OBJS)
+	@echo "$(YELLOW)Creating static library: $(NAME)$(NC)"
+	@echo "$(GREEN)SRC files are compiled and library is ready.$(NC)"
+
 all: $(NAME)
-
-$(NAME): $(OBJ) $(LIBFT) ${MLX}
-	$(CC) $(FLAGS) $(OBJ) $(LIBS) -o $(NAME)
-	@echo "$(GREEN)Compiled so_long successfully$(NC)"
-
-#Run libft's makefile in the libft directory
 
 $(OBJS): %.o: %.c
 	@echo "$(BLUE)Compiling $<...$(NC)"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-$(LIBFT):
-	@$(MAKE) -C $(LIBFT_DIR)
-
-$(MLX):
-	@$(MAKE) -C $(MLX_DIR)
-
 clean:
-	@echo "$(RED)Removing object files: $(NAME)$(NC)"
-	@$(RM) $(OBJ)
-	@$(MAKE) -C $(LIBFT_DIR) clean
-	@$(MAKE) -C $(MLX_DIR) clean
+	@echo "$(RED)Cleaning up object files...$(NC)"
+	@ rm -rf $(OBJS)
 
 fclean: clean
 	@echo "$(RED)Removing static library: $(NAME)$(NC)"
-	@$(RM) $(NAME)
-	@$(MAKE) -C $(LIBFT_DIR) fclean
-	@$(MAKE) -C $(MLX_DIR) clean
+	@ rm -rf $(NAME)
 
 re: fclean all
 

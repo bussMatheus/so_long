@@ -20,9 +20,9 @@ static void	define_assets(t_game *game)
 	w = IMAGES_SIZE;
 	h = IMAGES_SIZE;
 	game->p_right.img = mlx_xpm_file_to_image(game->mlx,
-			"./assets/player_right.xpm", &w, &h);
+			"./assets/p_right.xpm", &w, &h);
 	game->p_left.img = mlx_xpm_file_to_image(game->mlx,
-			"./assets/player_left.xpm", &w, &h);
+			"./assets/p_left.xpm", &w, &h);
 	game->c.img = mlx_xpm_file_to_image(game->mlx, "./assets/c.xpm", &w, &h);
 	game->bg.img = mlx_xpm_file_to_image(game->mlx, "./assets/bg.xpm", &w, &h);
 	game->exit.img = mlx_xpm_file_to_image(game->mlx, "./assets/E.xpm", &w, &h);
