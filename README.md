@@ -30,7 +30,7 @@ Clone The Minilibx (Linux) and compile with Make:
 Run the game with a map file:
 
   ```bash
-  ./so_long Maps/map1.ber
+  ./so_long Maps/map2.ber
   ```
 
 **Controls**: 
